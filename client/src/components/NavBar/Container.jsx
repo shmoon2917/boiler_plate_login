@@ -5,13 +5,15 @@ import { NavBar } from "./Presentational/NavBar";
 //===============================================
 //              Container Component
 //===============================================
-function NavBarContainer() {
+function Container() {
+  // console.log("Container hook 실행");
   // eslint-disable-next-line
   const [user, setUser] = useState(null);
   const [currentKey, setCurrentKey] = useState("");
   const unListen = useRef();
 
   useEffect(() => {
+    // console.log("Container useEffect 실행");
     unListen.current = history.listen(
       (location) => location.pathname === "/" && setCurrentKey("")
     );
@@ -27,4 +29,4 @@ function NavBarContainer() {
   );
 }
 
-export default NavBarContainer;
+export default Container;

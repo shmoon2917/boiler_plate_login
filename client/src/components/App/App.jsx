@@ -16,7 +16,7 @@ import {
   StyledContent,
   StyledFooter,
 } from "./styled";
-import NavBarContainer from "../NavBar";
+import NavBar from "../NavBar";
 import LandingPage from "../LandingPage";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
@@ -29,7 +29,7 @@ function App() {
       <GlobalStyle />
       <Router history={history}>
         <StyledHeader>
-          <NavBarContainer />
+          <NavBar />
         </StyledHeader>
 
         <StyledContent>
