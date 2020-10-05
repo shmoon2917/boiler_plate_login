@@ -4,9 +4,9 @@ export const asyncState = {
     data: initialData,
     error: null,
   }),
-  load: (data = null) => ({
+  load: (keepData = null) => ({
     loading: true,
-    data,
+    data: keepData,
     error: null,
   }),
   success: (data) => ({
@@ -21,7 +21,7 @@ export const asyncState = {
   }),
 };
 
-export const createAsyncReducer = (type, key) => {
+export const createAsyncReducer = (type, key, keepData = false) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
   const reducer = (state, action) => {
@@ -29,7 +29,7 @@ export const createAsyncReducer = (type, key) => {
       case type:
         return {
           ...state,
-          [key]: asyncState.load(),
+          [key]: asyncState.load(keepData ? state[key].data : null),
         };
       case SUCCESS:
         return {
@@ -39,7 +39,7 @@ export const createAsyncReducer = (type, key) => {
       case ERROR:
         return {
           ...state,
-          [key]: asyncState.error(action.payload),
+          [key]: asyncState.error(action.error),
         };
       default:
         return state;

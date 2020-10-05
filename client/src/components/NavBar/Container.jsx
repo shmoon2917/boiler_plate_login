@@ -7,8 +7,8 @@ import { NavBar } from "./Presentational/NavBar";
 //              Container Component
 //===============================================
 function Container() {
-
-  const user = useSelector((state) => state.user.)
+  // const user = useSelector((state) => state.user.)
+  const [user, setUser] = useState("");
   const [currentKey, setCurrentKey] = useState("");
   const unListenHistory = useRef();
 
@@ -17,7 +17,7 @@ function Container() {
     unListenHistory.current = history.listen(
       (location) => location.pathname === "/" && setCurrentKey("")
     );
-    
+
     return () => unListenHistory.current();
   }, []);
 

@@ -1,5 +1,6 @@
 import express from "express";
 import User from "../models/User.mjs";
+import auth from "../middlewares/auth.mjs";
 
 const router = express.Router();
 
@@ -68,7 +69,6 @@ router.post("/signin", async (req, res) => {
 
     res.status(200).json(responseObj);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       status: "error",
       data: {},
@@ -76,6 +76,18 @@ router.post("/signin", async (req, res) => {
       error: "",
     });
   }
+});
+
+router.get("/auth", auth, (req, res) => {
+  // 미들웨어를 통과했다면 Authentication 이 True 라는 뜻.
+
+  res.status(200).json({
+    status: "ok",
+    data: {
+      user: req.user,
+      isAuth: true,
+    },
+  });
 });
 
 export default router;

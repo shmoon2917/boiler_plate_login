@@ -9,8 +9,8 @@ export const createAsyncSaga = (type, promiseCreator) => {
 
       yield put({ type: SUCCESS, payload });
 
-      const history = yield getContext("history");
-      history.push("/");
+      // const history = yield getContext("history");
+      // history.push("/");
     } catch (e) {
       yield put({ type: ERROR, error: e });
     }

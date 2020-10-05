@@ -1,10 +1,11 @@
 import axios from "axios";
+import { authHeader } from "../_helpers/auth-header";
 
 const API_URL = "/api/user";
 
 const login = async (body) => {
   try {
-    const response = await axios.post(API_URL + "/signin", body);
+    const response = await axios.post(`${API_URL}/signin`, body);
     const user = await handleResponse(response);
 
     if (user.accessToken) {
@@ -19,7 +20,20 @@ const login = async (body) => {
 
 const register = async (body) => {
   try {
-    const response = await axios.post(API_URL + "/signup", body);
+    const response = await axios.post(`${API_URL}/signup`, body);
+    const data = await handleResponse(response);
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const auth = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/auth`, {
+      headers: authHeader(),
+    });
     const data = await handleResponse(response);
 
     return data;
@@ -42,4 +56,5 @@ const handleResponse = (response) => {
 export default {
   login,
   register,
+  auth,
 };

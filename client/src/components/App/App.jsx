@@ -4,6 +4,7 @@
 import React, { useEffect } from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { history } from "../../_helpers";
+import { AuthRoute } from "../../_components/AuthRoute";
 import "../../styles/global";
 
 //=======================================
@@ -34,9 +35,13 @@ function App() {
 
         <StyledContent>
           <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
+            <AuthRoute exact path="/" forWhom="all" component={LandingPage} />
+            <AuthRoute path="/login" forWhom="nonUser" component={LoginPage} />
+            <AuthRoute
+              path="/register"
+              forWhom="nonUser"
+              component={RegisterPage}
+            />
             <Redirect from="*" to="/" />
           </Switch>
         </StyledContent>

@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Layout } from "antd";
-import { device } from "../../_helpers";
+import { device } from "../../styles/global";
 
 const { Header, Content, Footer } = Layout;
 
@@ -61,14 +61,8 @@ const Container = styled.div`
 `;
 
 const StyledHeader = styled(Header)`
-  height: 52px;
-  width: 100%;
+  height: unset;
   padding: 0;
-  background-color: white;
-
-  @media ${device.tablet} {
-    height: 67px;
-  }
 `;
 
 const StyledContent = styled(Content)`

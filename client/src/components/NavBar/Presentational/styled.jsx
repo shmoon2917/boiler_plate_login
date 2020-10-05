@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import { Button } from "antd";
-import { device } from "../../../_helpers";
+import { device } from "../../../styles/global";
 
 const StyledNav = styled.nav`
+  height: 52px;
   padding: 0 20px;
+  position: relative;
+  background-color: white;
   border-bottom: solid 1px #e8e8e8;
   box-shadow: 0 0 30px #f3f1f1;
-  position: fixed;
   z-index: 5;
   width: 100%;
+
+  @media ${device.tablet} {
+    height: 67px;
+  }
 `;
 
 const StyledNavLogo = styled.div`
