@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useSelector } from "react-redux";
 import { history } from "../../_helpers/history";
 import { NavBar } from "./Presentational/NavBar";
 
@@ -6,18 +7,18 @@ import { NavBar } from "./Presentational/NavBar";
 //              Container Component
 //===============================================
 function Container() {
-  // console.log("Container hook 실행");
-  // eslint-disable-next-line
-  const [user, setUser] = useState(null);
+
+  const user = useSelector((state) => state.user.)
   const [currentKey, setCurrentKey] = useState("");
-  const unListen = useRef();
+  const unListenHistory = useRef();
 
   useEffect(() => {
     // console.log("Container useEffect 실행");
-    unListen.current = history.listen(
+    unListenHistory.current = history.listen(
       (location) => location.pathname === "/" && setCurrentKey("")
     );
-    return () => unListen.current();
+    
+    return () => unListenHistory.current();
   }, []);
 
   const onChangeCurrentTab = useCallback((e) => {

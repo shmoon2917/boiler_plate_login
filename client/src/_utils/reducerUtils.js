@@ -24,7 +24,6 @@ export const asyncState = {
 export const createAsyncReducer = (type, key) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
-  console.log(type);
   const reducer = (state, action) => {
     switch (action.type) {
       case type:
